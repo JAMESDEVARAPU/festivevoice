@@ -1,6 +1,6 @@
 # Overview
 
-The Indian Culture Explorer is a Streamlit-based web application designed to preserve, share, and explore India's rich cultural heritage. The platform serves as a collaborative knowledge base where users can contribute historical information, stories, language learning content, and cultural data while participating in educational quizzes. The application supports multiple Indian languages and provides data export capabilities for research purposes.
+The Indian Culture Explorer is a comprehensive Streamlit-based web application designed to preserve, share, and explore India's rich cultural heritage through multimedia content. The platform serves as a collaborative knowledge base where authenticated users can contribute voice stories, video traditions, festival information, and cultural data while managing their personal contributions dashboard. The application features secure user authentication, multilingual support, and data export capabilities for cultural preservation research.
 
 # User Preferences
 
@@ -10,15 +10,18 @@ Preferred communication style: Simple, everyday language.
 
 ## Frontend Architecture
 - **Framework**: Streamlit for rapid web application development
-- **Multi-page Structure**: Organized into distinct functional modules (Historical Timeline, Language Learning, Cultural Stories, Quiz, Data Export)
-- **Theming System**: Custom ChatGPT-inspired light/dark mode theming with CSS injection
+- **Multi-page Structure**: Organized into multimedia-focused modules (Voice Stories, Video Traditions, Festivals & Events, Cultural Stories, My Contributions)
+- **Authentication UI**: Secure login/registration forms with user profile management
+- **Theming System**: Custom ChatGPT-inspired light/dark mode theming with Viswam.ai orange branding
 - **Internationalization**: Support for multiple Indian languages with translation utilities
-- **Session Management**: Streamlit session state for user preferences, theme settings, and quiz progress
+- **Session Management**: Streamlit session state for user authentication, preferences, and contribution tracking
 
 ## Backend Architecture
-- **Data Storage**: JSON file-based storage system for corpus data with thread-safe operations
+- **Data Storage**: JSON file-based storage system for corpus data and user accounts with thread-safe operations
+- **Authentication System**: Secure user registration/login with password hashing and session management
 - **Content Validation**: AI-powered content validation using OpenAI and Anthropic APIs with fallback to basic validation
-- **Modular Utilities**: Separated concerns across utility modules (theming, data management, translations, AI validation)
+- **Multimedia Support**: Audio and video file upload capabilities with size limits and format validation
+- **Modular Utilities**: Separated concerns across utility modules (auth, theming, data management, translations, AI validation)
 - **File Structure**: Clean separation between main application, pages, utilities, and data storage
 
 ## Data Management
@@ -28,10 +31,12 @@ Preferred communication style: Simple, everyday language.
 - **Export Capabilities**: Data analytics and export functionality for research purposes
 
 ## Content Management System
-- **User Contributions**: Structured forms for submitting cultural content across different categories
+- **User Contributions**: Authenticated multimedia content submission (voice recordings, videos, festival info, cultural facts)
+- **Personal Dashboard**: Individual user contribution tracking with filtering, sorting, and export capabilities
 - **Quality Assurance**: AI validation system to ensure content accuracy and cultural appropriateness
-- **Content Organization**: Categorized storage by type (mythology, folk tales, historical events, language content)
-- **Search and Discovery**: Organized presentation of cultural content by categories and regions
+- **Content Organization**: Categorized storage by type (voice stories, video traditions, festivals, cultural facts)
+- **Multimedia Handling**: Audio/video file processing with metadata tracking and storage optimization
+- **Search and Discovery**: Organized presentation of cultural content by categories, regions, and contributors
 
 # External Dependencies
 

@@ -270,6 +270,14 @@ with feature_cols[3]:
         st.switch_page("pages/6_Festivals_Events.py")
     st.caption("Explore Indian festivals")
 
+# Add My Contributions button for logged-in users
+if is_logged_in():
+    st.markdown("---")
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        if st.button("📝 View My Contributions", use_container_width=True):
+            st.switch_page("pages/7_My_Contributions.py")
+
 # Recent contributions display
 st.markdown("---")
 st.markdown("### 📝 Recent Community Contributions")

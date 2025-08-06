@@ -209,6 +209,12 @@ def user_profile_display():
                 logout_user()
                 st.success("Logged out successfully!")
                 st.rerun()
+        
+        st.markdown("---")
+        
+        # Quick access buttons
+        if st.button("📝 My Contributions", use_container_width=True):
+            st.switch_page("pages/7_My_Contributions.py")
 
 def auth_sidebar():
     """Authentication sidebar component"""
