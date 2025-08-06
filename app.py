@@ -159,7 +159,7 @@ col1, col2, col3 = st.columns(3)
 data = load_corpus_data()
 
 with col1:
-    story_count = len([item for item in data if item.get('type') == 'story'])
+    voice_count = len([item for item in data if item.get('type') == 'voice_story'])
     st.markdown(f"""
     <div style="
         background-color: #F8F9FA;
@@ -169,13 +169,13 @@ with col1:
         border: 1px solid #E9ECEF;
         margin-bottom: 1rem;
     ">
-        <h3 style="margin: 0; color: #6C757D; font-size: 0.9rem; font-weight: normal;">Total Stories</h3>
-        <h1 style="margin: 0.5rem 0 0 0; color: #495057; font-size: 2.5rem; font-weight: bold;">{story_count}</h1>
+        <h3 style="margin: 0; color: #6C757D; font-size: 0.9rem; font-weight: normal;">Voice Stories</h3>
+        <h1 style="margin: 0.5rem 0 0 0; color: #495057; font-size: 2.5rem; font-weight: bold;">{voice_count}</h1>
     </div>
     """, unsafe_allow_html=True)
 
 with col2:
-    cultural_count = len([item for item in data if item.get('type') == 'cultural'])
+    video_count = len([item for item in data if item.get('type') == 'video_tradition'])
     st.markdown(f"""
     <div style="
         background-color: #F8F9FA;
@@ -185,8 +185,8 @@ with col2:
         border: 1px solid #E9ECEF;
         margin-bottom: 1rem;
     ">
-        <h3 style="margin: 0; color: #6C757D; font-size: 0.9rem; font-weight: normal;">Cultural Practices</h3>
-        <h1 style="margin: 0.5rem 0 0 0; color: #495057; font-size: 2.5rem; font-weight: bold;">{cultural_count}</h1>
+        <h3 style="margin: 0; color: #6C757D; font-size: 0.9rem; font-weight: normal;">Video Traditions</h3>
+        <h1 style="margin: 0.5rem 0 0 0; color: #495057; font-size: 2.5rem; font-weight: bold;">{video_count}</h1>
     </div>
     """, unsafe_allow_html=True)
 
@@ -276,14 +276,14 @@ st.markdown("### 🚀 Explore Indian Culture")
 feature_cols = st.columns(4)
 
 with feature_cols[0]:
-    if st.button("🏛️ Historical Timeline", use_container_width=True):
-        st.switch_page("pages/1_🏛️_Historical_Timeline.py")
-    st.caption("Explore major events in Indian history")
+    if st.button("🎙️ Voice Stories", use_container_width=True):
+        st.switch_page("pages/1_Voice_Stories.py")
+    st.caption("Record and share cultural stories")
 
 with feature_cols[1]:
-    if st.button("📚 Language Learning", use_container_width=True):
-        st.switch_page("pages/2_📚_Language_Learning.py")
-    st.caption("Learn Indian languages and scripts")
+    if st.button("📹 Video Traditions", use_container_width=True):
+        st.switch_page("pages/2_Video_Traditions.py")
+    st.caption("Upload videos of cultural practices")
 
 with feature_cols[2]:
     if st.button("🎭 Cultural Stories", use_container_width=True):
@@ -292,7 +292,7 @@ with feature_cols[2]:
 
 with feature_cols[3]:
     if st.button("🎊 Festivals & Events", use_container_width=True):
-        st.switch_page("pages/6_🎊_Festivals_Events.py")
+        st.switch_page("pages/6_Festivals_Events.py")
     st.caption("Explore Indian festivals")
 
 # Recent contributions display
