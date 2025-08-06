@@ -15,39 +15,8 @@ if 'selected_language' not in st.session_state:
 if 'user_contributions' not in st.session_state:
     st.session_state.user_contributions = []
 
-# Apply ChatGPT-style theming with full background
+# Apply ChatGPT-style theming
 apply_chatgpt_theme(st.session_state.theme_mode)
-
-# Add full page Lord Venkateswara background
-try:
-    import base64
-    with open('attached_assets/81J34SDlNeL_1754506571834.jpg', 'rb') as img_file:
-        img_base64 = base64.b64encode(img_file.read()).decode()
-    
-    st.markdown(f"""
-    <style>
-    .stApp {{
-        background: 
-            linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.85)),
-            url('data:image/jpeg;base64,{img_base64}');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-    }}
-    .main .block-container {{
-        background: rgba(255, 255, 255, 0.80);
-        backdrop-filter: blur(3px);
-        border-radius: 15px;
-        padding: 2rem;
-        margin-top: 1rem;
-        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.15);
-        border: 1px solid rgba(255, 215, 0, 0.2);
-    }}
-    </style>
-    """, unsafe_allow_html=True)
-except:
-    pass
 
 # Page configuration
 st.set_page_config(

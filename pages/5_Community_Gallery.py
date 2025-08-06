@@ -12,39 +12,8 @@ if 'theme_mode' not in st.session_state:
 if 'selected_language' not in st.session_state:
     st.session_state.selected_language = 'English'
 
-# Apply ChatGPT-style theming with full background
+# Apply ChatGPT-style theming
 apply_chatgpt_theme(st.session_state.theme_mode)
-
-# Add full page Lord Venkateswara background
-try:
-    import base64
-    with open('attached_assets/81J34SDlNeL_1754506571834.jpg', 'rb') as img_file:
-        img_base64 = base64.b64encode(img_file.read()).decode()
-    
-    st.markdown(f"""
-    <style>
-    .stApp {{
-        background: 
-            linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.85)),
-            url('data:image/jpeg;base64,{img_base64}');
-        background-size: cover;
-        background-position: center left;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-    }}
-    .main .block-container {{
-        background: rgba(255, 255, 255, 0.80);
-        backdrop-filter: blur(3px);
-        border-radius: 15px;
-        padding: 2rem;
-        margin-top: 1rem;
-        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.15);
-        border: 1px solid rgba(255, 215, 0, 0.2);
-    }}
-    </style>
-    """, unsafe_allow_html=True)
-except:
-    pass
 
 # Page configuration
 st.set_page_config(
@@ -56,63 +25,17 @@ st.set_page_config(
 # Get translations
 translations = get_translations(st.session_state.selected_language)
 
-# Page header with integrated background
-try:
-    import base64
-    with open('attached_assets/81J34SDlNeL_1754506571834.jpg', 'rb') as img_file:
-        img_base64 = base64.b64encode(img_file.read()).decode()
-    
-    st.markdown(f"""
-    <style>
-    .gallery-header {{
-        background: 
-            linear-gradient(135deg, rgba(255, 107, 53, 0.88) 0%, rgba(247, 147, 30, 0.88) 100%),
-            url('data:image/jpeg;base64,{img_base64}');
-        background-size: cover;
-        background-position: center left;
-        background-blend-mode: overlay;
-        padding: 2.5rem;
-        border-radius: 15px;
-        text-align: center;
-        margin-bottom: 2rem;
-        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
-        position: relative;
-    }}
-    .gallery-header::before {{
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.25);
-        border-radius: 15px;
-    }}
-    </style>
-    
-    <div class="gallery-header">
-        <div style="position: relative; z-index: 2;">
-            <h1 style="color: white; margin: 0; text-shadow: 0 3px 8px rgba(0,0,0,0.6); font-size: 2.5rem; background: rgba(0, 0, 0, 0.3); padding: 1rem; border-radius: 10px; backdrop-filter: blur(5px);">
-                🖼️ Community Gallery
-            </h1>
-            <p style="color: white; margin: 1rem 0 0 0; font-size: 1.1rem; text-shadow: 0 2px 6px rgba(0,0,0,0.6); background: rgba(255, 215, 0, 0.15); padding: 0.8rem; border-radius: 8px; backdrop-filter: blur(3px);">
-                Explore cultural contributions blessed by the divine community
-            </p>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-except:
-    st.markdown("""
-    <div style="background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">
-        <h1 style="color: white; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-            🖼️ Community Gallery
-        </h1>
-        <p style="color: white; margin: 0.5rem 0 0 0; opacity: 0.9;">
-            Explore cultural contributions blessed by the divine community
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+# Page header
+st.markdown("""
+<div style="background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">
+    <h1 style="color: white; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+        🖼️ Community Gallery
+    </h1>
+    <p style="color: white; margin: 0.5rem 0 0 0; opacity: 0.9;">
+        Explore cultural contributions blessed by the divine community
+    </p>
+</div>
+""", unsafe_allow_html=True)
 
 # Sidebar for authentication
 with st.sidebar:
