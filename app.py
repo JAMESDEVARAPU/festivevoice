@@ -2,7 +2,7 @@ import streamlit as st
 import json
 import os
 from datetime import datetime
-from utils.theming import apply_chatgpt_theme, toggle_theme
+from utils.theming import apply_chatgpt_theme
 from utils.data_manager import save_user_data, load_corpus_data
 from utils.translations import get_translations, SUPPORTED_LANGUAGES
 from utils.ai_validation import validate_content
@@ -16,7 +16,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Initialize session state
+# Initialize session state - fixed light theme
 if 'theme_mode' not in st.session_state:
     st.session_state.theme_mode = 'light'
 if 'selected_language' not in st.session_state:
@@ -45,11 +45,6 @@ with st.sidebar:
     auth_sidebar()
     
     st.markdown("---")
-    
-    # Theme toggle
-    if st.button("🌓 Toggle Light/Dark Mode"):
-        toggle_theme()
-        st.rerun()
     
     # Event color customization
     st.subheader("🎨 Event Colors")
