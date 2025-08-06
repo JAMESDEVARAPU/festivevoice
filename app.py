@@ -6,6 +6,7 @@ from utils.theming import apply_chatgpt_theme, toggle_theme
 from utils.data_manager import save_user_data, load_corpus_data
 from utils.translations import get_translations, SUPPORTED_LANGUAGES
 from utils.ai_validation import validate_content
+from utils.auth import auth_sidebar, is_logged_in, get_current_user, update_user_contributions
 
 # Page config
 st.set_page_config(
@@ -38,43 +39,10 @@ with st.sidebar:
     )
     st.session_state.selected_language = selected_lang
     
-    # User Profile Section
-    st.markdown("### 👤 User Profile")
+    st.markdown("---")
     
-    # Initialize session state for user profile
-    if 'user_profile' not in st.session_state:
-        st.session_state.user_profile = {
-            'username': '',
-            'email': '',
-            'region': 'North India'
-        }
-    
-    username = st.text_input(
-        "Username / उपयोगकर्ता नाम:",
-        value=st.session_state.user_profile['username'],
-        placeholder="Enter your username"
-    )
-    st.session_state.user_profile['username'] = username
-    
-    email = st.text_input(
-        "Email:",
-        value=st.session_state.user_profile['email'],
-        placeholder="Enter your email"
-    )
-    st.session_state.user_profile['email'] = email
-    
-    region = st.selectbox(
-        "Region / क्षेत्र:",
-        options=["North India", "South India", "East India", "West India", "Central India", "Northeast India"],
-        index=["North India", "South India", "East India", "West India", "Central India", "Northeast India"].index(st.session_state.user_profile['region'])
-    )
-    st.session_state.user_profile['region'] = region
-    
-    if st.button("Join Community / समुदाय में शामिल हों", use_container_width=True):
-        if username and email:
-            st.success("Welcome to the community!")
-        else:
-            st.warning("Please fill all fields")
+    # Authentication Section
+    auth_sidebar()
     
     st.markdown("---")
     
@@ -137,8 +105,8 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Login message (similar to screenshot)
-if not st.session_state.user_profile.get('username'):
+# Login message for non-authenticated users
+if not is_logged_in():
     st.markdown("""
     <div style="
         background-color: #FFF3CD;
@@ -247,26 +215,33 @@ with col2:
         )
         
         if st.button("Submit Fact") and cultural_fact:
-            # Validate content with AI
-            validation_result = validate_content(cultural_fact, fact_category)
-            
-            if validation_result['is_valid']:
-                # Save to corpus
-                user_data = {
-                    'type': 'cultural_fact',
-                    'content': cultural_fact,
-                    'category': fact_category,
-                    'language': st.session_state.selected_language,
-                    'timestamp': datetime.now().isoformat(),
-                    'quality_score': validation_result['quality_score']
-                }
-                
-                save_user_data(user_data)
-                st.session_state.user_contributions.append(user_data)
-                st.success("✅ Thank you for your contribution!")
-                st.balloons()
+            if not is_logged_in():
+                st.warning("Please login to submit contributions")
             else:
-                st.warning("⚠️ Please provide more detailed information.")
+                current_user = get_current_user()
+                # Validate content with AI
+                validation_result = validate_content(cultural_fact, fact_category)
+                
+                if validation_result['is_valid']:
+                    # Save to corpus
+                    username = current_user.get('username', 'unknown') if current_user else 'unknown'
+                    user_data = {
+                        'type': 'cultural_fact',
+                        'content': cultural_fact,
+                        'category': fact_category,
+                        'language': st.session_state.selected_language,
+                        'timestamp': datetime.now().isoformat(),
+                        'quality_score': validation_result['quality_score'],
+                        'contributor': username
+                    }
+                    
+                    save_user_data(user_data)
+                    update_user_contributions(username)
+                    st.session_state.user_contributions.append(user_data)
+                    st.success("✅ Thank you for your contribution!")
+                    st.balloons()
+                else:
+                    st.warning("⚠️ Please provide more detailed information.")
 
 # Featured sections
 st.markdown("---")

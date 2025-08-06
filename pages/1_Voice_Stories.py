@@ -5,6 +5,7 @@ from utils.data_manager import save_user_data, load_corpus_data
 from utils.ai_validation import validate_content
 from utils.theming import apply_chatgpt_theme
 from utils.translations import get_translations
+from utils.auth import is_logged_in, get_current_user, update_user_contributions
 import base64
 
 # Initialize session state
@@ -118,43 +119,50 @@ with col1:
         submitted = st.form_submit_button("🎙️ Submit Voice Story")
         
         if submitted and story_title and (audio_file is not None or story_transcription):
-            # Process audio file
-            audio_data = None
-            if audio_file is not None:
-                audio_bytes = audio_file.read()
-                audio_data = base64.b64encode(audio_bytes).decode()
-            
-            # Create story data
-            voice_story_data = {
-                'type': 'voice_story',
-                'title': story_title,
-                'category': story_category,
-                'region': story_region,
-                'recording_language': story_language,
-                'description': story_description,
-                'significance': cultural_significance,
-                'transcription': story_transcription,
-                'has_audio': audio_file is not None,
-                'audio_filename': audio_file.name if audio_file else None,
-                'language': st.session_state.selected_language,
-                'timestamp': datetime.now().isoformat()
-            }
-            
-            # Validate content
-            content_to_validate = f"Title: {story_title}\nDescription: {story_description}\nTranscription: {story_transcription}"
-            validation_result = validate_content(content_to_validate, "Voice Story")
-            
-            if validation_result['is_valid']:
-                voice_story_data['quality_score'] = validation_result['quality_score']
-                save_user_data(voice_story_data)
-                st.session_state.user_contributions.append(voice_story_data)
-                st.success("✅ Voice story submitted successfully!")
-                st.balloons()
-                
-                if audio_file:
-                    st.info("🎧 Audio file has been saved with your story contribution.")
+            if not is_logged_in():
+                st.warning("Please login to submit voice stories")
             else:
-                st.warning("⚠️ Please provide more detailed information about your story.")
+                current_user = get_current_user()
+                # Process audio file
+                audio_data = None
+                if audio_file is not None:
+                    audio_bytes = audio_file.read()
+                    audio_data = base64.b64encode(audio_bytes).decode()
+                
+                # Create story data
+                voice_story_data = {
+                    'type': 'voice_story',
+                    'title': story_title,
+                    'category': story_category,
+                    'region': story_region,
+                    'recording_language': story_language,
+                    'description': story_description,
+                    'significance': cultural_significance,
+                    'transcription': story_transcription,
+                    'has_audio': audio_file is not None,
+                    'audio_filename': audio_file.name if audio_file else None,
+                    'language': st.session_state.selected_language,
+                    'timestamp': datetime.now().isoformat(),
+                    'contributor': current_user.get('username', 'unknown') if current_user else 'unknown'
+                }
+                
+                # Validate content
+                content_to_validate = f"Title: {story_title}\nDescription: {story_description}\nTranscription: {story_transcription}"
+                validation_result = validate_content(content_to_validate, "Voice Story")
+                
+                if validation_result['is_valid']:
+                    voice_story_data['quality_score'] = validation_result['quality_score']
+                    save_user_data(voice_story_data)
+                    username = current_user.get('username') if current_user else 'unknown'
+                    update_user_contributions(username)
+                    st.session_state.user_contributions.append(voice_story_data)
+                    st.success("✅ Voice story submitted successfully!")
+                    st.balloons()
+                    
+                    if audio_file:
+                        st.info("🎧 Audio file has been saved with your story contribution.")
+                else:
+                    st.warning("⚠️ Please provide more detailed information about your story.")
 
 with col2:
     st.markdown("### 📊 Voice Story Statistics")

@@ -5,6 +5,7 @@ from utils.data_manager import save_user_data, load_corpus_data
 from utils.ai_validation import validate_content
 from utils.theming import apply_chatgpt_theme
 from utils.translations import get_translations
+from utils.auth import is_logged_in, get_current_user, update_user_contributions
 import base64
 
 # Initialize session state
@@ -138,7 +139,9 @@ with col1:
         submitted = st.form_submit_button("📹 Submit Video Tradition")
         
         if submitted and video_title and video_description and consent_given:
-            if video_file is not None:
+            if not is_logged_in():
+                st.warning("Please login to submit video traditions")
+            elif video_file is not None:
                 # Process video file
                 video_bytes = video_file.read()
                 video_size_mb = len(video_bytes) / (1024 * 1024)
@@ -146,6 +149,7 @@ with col1:
                 if video_size_mb > 100:
                     st.error("Video file is too large. Please upload a file smaller than 100MB.")
                 else:
+                    current_user = get_current_user()
                     # Create video tradition data
                     video_tradition_data = {
                         'type': 'video_tradition',
@@ -163,7 +167,8 @@ with col1:
                         'privacy_level': privacy_level,
                         'consent_given': consent_given,
                         'language': st.session_state.selected_language,
-                        'timestamp': datetime.now().isoformat()
+                        'timestamp': datetime.now().isoformat(),
+                        'contributor': current_user.get('username', 'unknown') if current_user else 'unknown'
                     }
                     
                     # Validate content
@@ -173,6 +178,8 @@ with col1:
                     if validation_result['is_valid']:
                         video_tradition_data['quality_score'] = validation_result['quality_score']
                         save_user_data(video_tradition_data)
+                        username = current_user.get('username') if current_user else 'unknown'
+                        update_user_contributions(username)
                         st.session_state.user_contributions.append(video_tradition_data)
                         st.success("✅ Video tradition submitted successfully!")
                         st.balloons()
