@@ -265,13 +265,34 @@ with feature_cols[3]:
         st.switch_page("pages/6_Festivals_Events.py")
     st.caption("Explore Indian festivals")
 
-# Add My Contributions button for logged-in users
-if is_logged_in():
-    st.markdown("---")
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        if st.button("📝 View My Contributions", use_container_width=True):
+# Add second row of features
+st.markdown("### 🌟 Explore & Discover")
+feature_cols2 = st.columns(2)
+
+with feature_cols2[0]:
+    if st.button("🖼️ Community Gallery", use_container_width=True):
+        st.switch_page("pages/5_Community_Gallery.py")
+    st.caption("View all uploaded content from community")
+
+with feature_cols2[1]:
+    if is_logged_in():
+        if st.button("📝 My Contributions", use_container_width=True):
             st.switch_page("pages/7_My_Contributions.py")
+        st.caption("Manage your personal uploads")
+    else:
+        st.markdown("""
+        <div style="
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: #F8F9FA;
+            text-align: center;
+            border: 2px dashed #DEE2E6;
+        ">
+            <p style="margin: 0; color: #6C757D;">Login to view your contributions</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+
 
 # Recent contributions display
 st.markdown("---")

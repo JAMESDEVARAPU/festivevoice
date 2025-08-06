@@ -10,7 +10,7 @@ Preferred communication style: Simple, everyday language.
 
 ## Frontend Architecture
 - **Framework**: Streamlit for rapid web application development
-- **Multi-page Structure**: Organized into multimedia-focused modules (Voice Stories, Video Traditions, Festivals & Events, Cultural Stories, My Contributions)
+- **Multi-page Structure**: Organized into multimedia-focused modules (Voice Stories, Video Traditions, Festivals & Events, Cultural Stories, Community Gallery, My Contributions)
 - **Authentication UI**: Secure login/registration forms with user profile management
 - **Theming System**: Custom ChatGPT-inspired light/dark mode theming with Viswam.ai orange branding
 - **Internationalization**: Support for multiple Indian languages with translation utilities
@@ -37,6 +37,7 @@ Preferred communication style: Simple, everyday language.
 - **Content Organization**: Categorized storage by type (voice stories, video traditions, festivals, cultural facts)
 - **Multimedia Handling**: Audio/video file processing with metadata tracking and storage optimization
 - **Search and Discovery**: Organized presentation of cultural content by categories, regions, and contributors
+- **Community Gallery**: Public viewing interface for all user-generated content with filtering, search, and contributor recognition
 
 # External Dependencies
 
