@@ -67,8 +67,8 @@ def validate_with_openai(content: str, content_type: str) -> Dict[str, Any]:
             max_tokens=500
         )
         
-        content = response.choices[0].message.content
-        if content:
+        content = response.choices[0].message.content or ""
+        if content.strip():
             result = json.loads(content)
         else:
             raise Exception("Empty response from OpenAI")
@@ -132,11 +132,11 @@ def validate_with_anthropic(content: str, content_type: str) -> Dict[str, Any]:
         )
         
         # Parse JSON from response
-        content_block = response.content[0]
-        if hasattr(content_block, 'text'):
-            result = json.loads(content_block.text)
-        else:
-            raise Exception("No text content in Anthropic response")
+        try:
+            content_text = str(response.content[0])
+            result = json.loads(content_text)
+        except (AttributeError, json.JSONDecodeError):
+            raise Exception("Unable to parse Anthropic response")
         
         return {
             'is_valid': result.get('is_valid', True),
