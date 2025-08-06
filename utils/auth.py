@@ -100,6 +100,10 @@ def update_user_contributions(username):
     if username in users:
         users[username]['contributions_count'] = users[username].get('contributions_count', 0) + 1
         save_users(users)
+        
+        # Also update session state if this user is currently logged in
+        if is_logged_in() and get_current_user().get('username') == username:
+            st.session_state.authenticated_user['contributions_count'] = users[username]['contributions_count']
 
 def is_logged_in():
     """Check if user is logged in"""
@@ -108,6 +112,14 @@ def is_logged_in():
 def get_current_user():
     """Get current logged in user data"""
     if is_logged_in():
+        # Get fresh user data from file to ensure we have latest contribution count
+        username = st.session_state.authenticated_user.get('username')
+        if username:
+            fresh_user_data = get_user_data(username)
+            if fresh_user_data:
+                # Update session with fresh data
+                st.session_state.authenticated_user.update(fresh_user_data)
+                st.session_state.authenticated_user['username'] = username
         return st.session_state.authenticated_user
     return None
 

@@ -5,6 +5,7 @@ from utils.theming import apply_chatgpt_theme
 from utils.data_manager import save_user_data, load_corpus_data
 from utils.ai_validation import validate_content
 from utils.translations import get_translations
+from utils.auth import is_logged_in, get_current_user, update_user_contributions
 
 st.set_page_config(page_title="Cultural Stories", page_icon="🎭", layout="wide")
 
@@ -168,33 +169,40 @@ if st.button("📚 Submit Story") and story_title and story_content:
     )
     
     if validation_result['is_valid']:
-        # Save story to corpus
-        user_data = {
-            'type': 'cultural_story',
-            'category': selected_category,
-            'title': story_title,
-            'content': story_content,
-            'origin': story_origin,
-            'original_language': story_language,
-            'region': story_region,
-            'moral_lesson': story_moral,
-            'audience_age': audience_age,
-            'characters': characters,
-            'setting_time': setting_time,
-            'setting_place': setting_place,
-            'variations': variations,
-            'user_language': selected_language,
-            'timestamp': datetime.now().isoformat(),
-            'quality_score': validation_result['quality_score']
-        }
-        
-        save_user_data(user_data)
-        if 'user_contributions' not in st.session_state:
-            st.session_state.user_contributions = []
-        st.session_state.user_contributions.append(user_data)
-        
-        st.success("✅ Thank you for sharing your cultural story!")
-        st.balloons()
+        if not is_logged_in():
+            st.warning("Please login to submit cultural stories")
+        else:
+            current_user = get_current_user()
+            # Save story to corpus
+            user_data = {
+                'type': 'cultural_story',
+                'category': selected_category,
+                'title': story_title,
+                'content': story_content,
+                'origin': story_origin,
+                'original_language': story_language,
+                'region': story_region,
+                'moral_lesson': story_moral,
+                'audience_age': audience_age,
+                'characters': characters,
+                'setting_time': setting_time,
+                'setting_place': setting_place,
+                'variations': variations,
+                'user_language': selected_language,
+                'timestamp': datetime.now().isoformat(),
+                'quality_score': validation_result['quality_score'],
+                'contributor': current_user.get('username', 'unknown') if current_user else 'unknown'
+            }
+            
+            save_user_data(user_data)
+            username = current_user.get('username') if current_user else 'unknown'
+            update_user_contributions(username)
+            if 'user_contributions' not in st.session_state:
+                st.session_state.user_contributions = []
+            st.session_state.user_contributions.append(user_data)
+            
+            st.success("✅ Thank you for sharing your cultural story!")
+            st.balloons()
     else:
         st.warning("⚠️ Please provide more details to make your story more complete.")
 

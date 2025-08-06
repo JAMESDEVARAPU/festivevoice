@@ -5,6 +5,7 @@ from utils.data_manager import save_user_data, load_corpus_data
 from utils.ai_validation import validate_content
 from utils.theming import apply_chatgpt_theme
 from utils.translations import get_translations, SUPPORTED_LANGUAGES
+from utils.auth import is_logged_in, get_current_user, update_user_contributions
 
 # Initialize session state
 if 'theme_mode' not in st.session_state:
@@ -108,33 +109,40 @@ with col1:
         submitted = st.form_submit_button("🎊 Submit Festival Information")
         
         if submitted and festival_name and festival_description:
-            # Create comprehensive festival data
-            festival_data = {
-                'type': 'festival_event',
-                'name': festival_name,
-                'category': festival_category,
-                'region': festival_region,
-                'months': festival_months,
-                'description': festival_description,
-                'traditions': festival_traditions,
-                'foods': festival_foods,
-                'significance': cultural_significance,
-                'language': st.session_state.selected_language,
-                'timestamp': datetime.now().isoformat()
-            }
-            
-            # Validate content
-            full_content = f"Festival: {festival_name}\nDescription: {festival_description}\nTraditions: {festival_traditions}\nSignificance: {cultural_significance}"
-            validation_result = validate_content(full_content, "Cultural Event")
-            
-            if validation_result['is_valid']:
-                festival_data['quality_score'] = validation_result['quality_score']
-                save_user_data(festival_data)
-                st.session_state.user_contributions.append(festival_data)
-                st.success("✅ Festival information added successfully!")
-                st.balloons()
+            if not is_logged_in():
+                st.warning("Please login to submit festival information")
             else:
-                st.warning("⚠️ Please provide more detailed information about the festival.")
+                current_user = get_current_user()
+                # Create comprehensive festival data
+                festival_data = {
+                    'type': 'festival_event',
+                    'name': festival_name,
+                    'category': festival_category,
+                    'region': festival_region,
+                    'months': festival_months,
+                    'description': festival_description,
+                    'traditions': festival_traditions,
+                    'foods': festival_foods,
+                    'significance': cultural_significance,
+                    'language': st.session_state.selected_language,
+                    'timestamp': datetime.now().isoformat(),
+                    'contributor': current_user.get('username', 'unknown') if current_user else 'unknown'
+                }
+                
+                # Validate content
+                full_content = f"Festival: {festival_name}\nDescription: {festival_description}\nTraditions: {festival_traditions}\nSignificance: {cultural_significance}"
+                validation_result = validate_content(full_content, "Cultural Event")
+                
+                if validation_result['is_valid']:
+                    festival_data['quality_score'] = validation_result['quality_score']
+                    save_user_data(festival_data)
+                    username = current_user.get('username') if current_user else 'unknown'
+                    update_user_contributions(username)
+                    st.session_state.user_contributions.append(festival_data)
+                    st.success("✅ Festival information added successfully!")
+                    st.balloons()
+                else:
+                    st.warning("⚠️ Please provide more detailed information about the festival.")
 
 with col2:
     st.markdown("### 📊 Festival Statistics")

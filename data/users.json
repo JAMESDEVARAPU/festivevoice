@@ -1,1 +1,12 @@
-{}
+{
+  "james": {
+    "email": "devarapujames@gmail.com",
+    "password_hash": "1cae7fde034f899ddc7db6b3114e54e9d5d64ddb5a5dd6bb7ae19892e0b197d5",
+    "region": "North India",
+    "full_name": "",
+    "registration_date": "2025-08-06T18:34:06.241878",
+    "last_login": "2025-08-06T18:34:13.809920",
+    "contributions_count": 0,
+    "role": "user"
+  }
+}
