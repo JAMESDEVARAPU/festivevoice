@@ -10,7 +10,7 @@ from utils.auth import auth_sidebar, is_logged_in, get_current_user, update_user
 
 # Page config
 st.set_page_config(
-    page_title="भारतीय संस्कृति - Indian Culture Explorer",
+    page_title="Indian Culture Explorer",
     page_icon="🇮🇳",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -76,7 +76,7 @@ st.markdown("""
     ">
         <span style="color: white; font-size: 2rem; margin-right: 0.5rem;">🕉️</span>
         <span style="color: white; font-size: 1.5rem; font-weight: bold;">
-            Viswam.ai - भारतीय सांस्कृतिक संग्रह
+            Viswam.ai - Indian Cultural Collection
         </span>
     </div>
     <h2 style="
@@ -95,7 +95,7 @@ st.markdown("""
         opacity: 0.9;
         text-shadow: 0 1px 2px rgba(0,0,0,0.2);
     ">
-        समुदायिक योगदान के माध्यम से भारत की समृद्ध सांस्कृतिक विरासत का संरक्षण
+        Preserving India's rich cultural heritage through community contributions
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -112,7 +112,7 @@ if not is_logged_in():
         margin-bottom: 1.5rem;
     ">
         <span style="color: #856404;">
-            Please login from the sidebar to start contributing! / कृपया योगदान शुरू करने के लिए साइडबार से लॉगिन करें।
+            Please login from the sidebar to start contributing!
         </span>
     </div>
     """, unsafe_allow_html=True)
@@ -180,7 +180,7 @@ st.markdown("""
         margin-bottom: 1rem;
         display: inline-block;
     ">
-        🎯 How to Contribute / कैसे योगदान करें
+        🎯 How to Contribute
     </h2>
 </div>
 """, unsafe_allow_html=True)

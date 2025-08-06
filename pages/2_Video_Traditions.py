@@ -40,7 +40,7 @@ st.markdown("""
     box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
 ">
     <h1 style="color: white; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-        📹 Video Traditions / वीडियो परंपराएं
+        📹 Video Traditions
     </h1>
     <p style="color: white; margin: 0.5rem 0 0 0; opacity: 0.9;">
         Share videos of cultural practices, dances, rituals, and traditions
@@ -56,7 +56,7 @@ with col1:
     
     with st.form("video_tradition_form"):
         video_title = st.text_input(
-            "Video Title / वीडियो शीर्षक:",
+            "Video Title:",
             placeholder="e.g., Classical Bharatanatyam Performance, Rangoli Making, Traditional Cooking"
         )
         

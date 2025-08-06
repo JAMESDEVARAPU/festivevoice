@@ -37,7 +37,7 @@ if not is_logged_in():
         box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
     ">
         <h1 style="color: white; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-            📝 Login Required / लॉगिन आवश्यक
+            📝 Login Required
         </h1>
         <p style="color: white; margin: 0.5rem 0 0 0; opacity: 0.9;">
             Please login to view your contributions
@@ -66,7 +66,7 @@ st.markdown(f"""
     box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
 ">
     <h1 style="color: white; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-        📝 My Contributions / मेरे योगदान
+        📝 My Contributions
     </h1>
     <p style="color: white; margin: 0.5rem 0 0 0; opacity: 0.9;">
         Welcome {username}! Here are all your cultural contributions

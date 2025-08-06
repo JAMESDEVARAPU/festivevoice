@@ -39,7 +39,7 @@ st.markdown("""
     box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
 ">
     <h1 style="color: white; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-        🎊 Festivals & Cultural Events / त्योहार और सांस्कृतिक कार्यक्रम
+        🎊 Festivals & Cultural Events
     </h1>
     <p style="color: white; margin: 0.5rem 0 0 0; opacity: 0.9;">
         Share and explore India's vibrant festival celebrations
@@ -55,7 +55,7 @@ with col1:
     
     with st.form("festival_form"):
         festival_name = st.text_input(
-            "Festival Name / त्योहार का नाम:",
+            "Festival Name:",
             placeholder="e.g., Diwali, Holi, Eid, Christmas, Dussehra"
         )
         

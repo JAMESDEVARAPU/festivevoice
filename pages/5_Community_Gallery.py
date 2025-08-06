@@ -36,7 +36,7 @@ st.markdown("""
     box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
 ">
     <h1 style="color: white; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-        🖼️ Community Gallery / समुदायिक गैलरी
+        🖼️ Community Gallery
     </h1>
     <p style="color: white; margin: 0.5rem 0 0 0; opacity: 0.9;">
         Explore cultural contributions from our community members

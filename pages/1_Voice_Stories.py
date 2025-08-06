@@ -40,7 +40,7 @@ st.markdown("""
     box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
 ">
     <h1 style="color: white; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-        🎙️ Voice Stories / आवाज की कहानियां
+        🎙️ Voice Stories
     </h1>
     <p style="color: white; margin: 0.5rem 0 0 0; opacity: 0.9;">
         Record and share oral traditions, folk tales, and cultural stories
@@ -57,7 +57,7 @@ with col1:
     # Story details form
     with st.form("voice_story_form"):
         story_title = st.text_input(
-            "Story Title / कहानी का शीर्षक:",
+            "Story Title:",
             placeholder="e.g., The Legend of Krishna, Folk Tale from Punjab"
         )
         
