@@ -30,10 +30,11 @@ apply_chatgpt_theme(st.session_state.theme_mode)
 with st.sidebar:
     # Language selection at top
     selected_lang = st.selectbox(
-        "",
+        "Language",
         options=list(SUPPORTED_LANGUAGES.keys()),
         index=list(SUPPORTED_LANGUAGES.keys()).index(st.session_state.selected_language),
-        key="lang_selector"
+        key="lang_selector",
+        label_visibility="collapsed"
     )
     st.session_state.selected_language = selected_lang
     
@@ -190,7 +191,7 @@ with col2:
     """, unsafe_allow_html=True)
 
 with col3:
-    historical_count = len([item for item in data if item.get('type') == 'historical'])
+    event_count = len([item for item in data if item.get('category') in ['Festivals', 'Religious Events', 'Cultural Celebrations']])
     st.markdown(f"""
     <div style="
         background-color: #F8F9FA;
@@ -200,8 +201,8 @@ with col3:
         border: 1px solid #E9ECEF;
         margin-bottom: 1rem;
     ">
-        <h3 style="margin: 0; color: #6C757D; font-size: 0.9rem; font-weight: normal;">Historical Events</h3>
-        <h1 style="margin: 0.5rem 0 0 0; color: #495057; font-size: 2.5rem; font-weight: bold;">{historical_count}</h1>
+        <h3 style="margin: 0; color: #6C757D; font-size: 0.9rem; font-weight: normal;">Festival Events</h3>
+        <h1 style="margin: 0.5rem 0 0 0; color: #495057; font-size: 2.5rem; font-weight: bold;">{event_count}</h1>
     </div>
     """, unsafe_allow_html=True)
 
@@ -236,13 +237,13 @@ with col2:
     st.markdown("#### 🌟 Quick Contribute")
     with st.expander("Share a Cultural Fact"):
         cultural_fact = st.text_area(
-            "Share an interesting fact about Indian culture:",
-            placeholder="e.g., Did you know that yoga originated in India over 5,000 years ago?",
+            "Share details about festivals or cultural events:",
+            placeholder="e.g., Diwali is celebrated for 5 days and signifies the victory of light over darkness...",
             key="quick_fact"
         )
         fact_category = st.selectbox(
             "Category:",
-            ["History", "Religion", "Art", "Music", "Dance", "Food", "Language", "Tradition"]
+            ["Festivals", "Religious Events", "Cultural Celebrations", "Historical Events", "Traditional Practices", "Food Culture", "Art & Music", "Language & Literature", "Regional Customs"]
         )
         
         if st.button("Submit Fact") and cultural_fact:
@@ -290,9 +291,9 @@ with feature_cols[2]:
     st.caption("Share and read cultural narratives")
 
 with feature_cols[3]:
-    if st.button("🧠 Cultural Quiz", use_container_width=True):
-        st.switch_page("pages/4_🧠_Cultural_Quiz.py")
-    st.caption("Test your knowledge")
+    if st.button("🎊 Festivals & Events", use_container_width=True):
+        st.switch_page("pages/6_🎊_Festivals_Events.py")
+    st.caption("Explore Indian festivals")
 
 # Recent contributions display
 st.markdown("---")
