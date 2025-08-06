@@ -57,7 +57,7 @@ with st.sidebar:
 # Get translations for selected language
 translations = get_translations(st.session_state.selected_language)
 
-# Main content - Orange banner with Viswam.ai branding
+# Main content - Orange banner with Viswam.ai branding and divine theme
 st.markdown("""
 <div style="background: linear-gradient(135deg, #FF7F50 0%, #FF6B35 100%); padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">
     <div style="background: rgba(255, 255, 255, 0.2); padding: 0.5rem 1.5rem; border-radius: 25px; display: inline-block; margin-bottom: 1rem;">
@@ -72,6 +72,14 @@ st.markdown("""
     </p>
 </div>
 """, unsafe_allow_html=True)
+
+# Display Lord Venkateswara image
+try:
+    st.image('attached_assets/81J34SDlNeL_1754506571834.jpg', 
+             caption='Lord Venkateswara - Divine Blessings for Cultural Preservation', 
+             use_column_width=True)
+except:
+    st.info("🏛️ Lord Venkateswara's divine blessings guide this cultural preservation mission")
 
 # Login message for non-authenticated users
 if not is_logged_in():

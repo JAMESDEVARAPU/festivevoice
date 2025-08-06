@@ -31,14 +31,7 @@ translations = get_translations(st.session_state.selected_language)
 
 # Page header
 st.markdown("""
-<div style="
-    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
-    padding: 2rem;
-    border-radius: 15px;
-    text-align: center;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-">
+<div style="background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">
     <h1 style="color: white; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
         📹 Video Traditions
     </h1>
