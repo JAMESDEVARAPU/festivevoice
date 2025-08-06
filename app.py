@@ -57,29 +57,112 @@ with st.sidebar:
 # Get translations for selected language
 translations = get_translations(st.session_state.selected_language)
 
-# Main content - Orange banner with Viswam.ai branding and divine theme
-st.markdown("""
-<div style="background: linear-gradient(135deg, #FF7F50 0%, #FF6B35 100%); padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">
-    <div style="background: rgba(255, 255, 255, 0.2); padding: 0.5rem 1.5rem; border-radius: 25px; display: inline-block; margin-bottom: 1rem;">
-        <span style="color: white; font-size: 2rem; margin-right: 0.5rem;">🕉️</span>
-        <span style="color: white; font-size: 1.5rem; font-weight: bold;">Viswam.ai - Indian Cultural Collection</span>
-    </div>
-    <h2 style="color: white; margin: 1rem 0; font-size: 1.2rem; font-weight: normal; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-        Preserving India's festival cultural heritage through community contributions
-    </h2>
-    <p style="color: white; margin: 0.5rem 0 0 0; font-size: 1rem; opacity: 0.9; text-shadow: 0 1px 2px rgba(0,0,0,0.2);">
-        🏛️ Blessed by the divine grace of Lord Venkateswara 🙏
-    </p>
-</div>
-""", unsafe_allow_html=True)
-
-# Display Lord Venkateswara image
+# Main content with integrated Lord Venkateswara background
 try:
-    st.image('attached_assets/81J34SDlNeL_1754506571834.jpg', 
-             caption='Lord Venkateswara - Divine Blessings for Cultural Preservation', 
-             use_column_width=True)
-except:
-    st.info("🏛️ Lord Venkateswara's divine blessings guide this cultural preservation mission")
+    import base64
+    with open('attached_assets/81J34SDlNeL_1754506571834.jpg', 'rb') as img_file:
+        img_base64 = base64.b64encode(img_file.read()).decode()
+    
+    st.markdown(f"""
+    <style>
+    .venkateswara-header {{
+        background: 
+            linear-gradient(135deg, rgba(255, 127, 80, 0.85) 0%, rgba(255, 107, 53, 0.85) 100%),
+            url('data:image/jpeg;base64,{img_base64}');
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: overlay;
+        padding: 3rem 2rem;
+        border-radius: 15px;
+        text-align: center;
+        margin-bottom: 2rem;
+        box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        position: relative;
+    }}
+    .venkateswara-header::before {{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+        z-index: 1;
+    }}
+    .header-content {{
+        position: relative;
+        z-index: 2;
+    }}
+    .brand-box {{
+        background: rgba(255, 255, 255, 0.25);
+        padding: 0.8rem 2rem;
+        border-radius: 30px;
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 215, 0, 0.3);
+    }}
+    .main-title {{
+        color: white;
+        margin: 1.5rem 0;
+        font-size: 1.4rem;
+        font-weight: 500;
+        text-shadow: 0 3px 8px rgba(0,0,0,0.7);
+        letter-spacing: 1px;
+        background: rgba(0, 0, 0, 0.4);
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+    }}
+    .blessing-text {{
+        color: white;
+        margin: 1rem 0 0 0;
+        font-size: 1.2rem;
+        font-weight: 500;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+        background: rgba(255, 215, 0, 0.2);
+        padding: 0.8rem 1.5rem;
+        border-radius: 25px;
+        display: inline-block;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 215, 0, 0.4);
+    }}
+    </style>
+    
+    <div class="venkateswara-header">
+        <div class="header-content">
+            <div class="brand-box">
+                <span style="color: white; font-size: 2.5rem; margin-right: 0.8rem; text-shadow: 0 3px 6px rgba(0,0,0,0.5);">🕉️</span>
+                <span style="color: white; font-size: 1.8rem; font-weight: bold; text-shadow: 0 3px 6px rgba(0,0,0,0.5);">
+                    Viswam.ai - Indian Cultural Collection
+                </span>
+            </div>
+            <h2 class="main-title">
+                Preserving India's festival cultural heritage through community contributions
+            </h2>
+            <p class="blessing-text">
+                🏛️ Blessed by the divine grace of Lord Venkateswara 🙏
+            </p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+except Exception as e:
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #FF7F50 0%, #FF6B35 100%); padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">
+        <div style="background: rgba(255, 255, 255, 0.2); padding: 0.5rem 1.5rem; border-radius: 25px; display: inline-block; margin-bottom: 1rem;">
+            <span style="color: white; font-size: 2rem; margin-right: 0.5rem;">🕉️</span>
+            <span style="color: white; font-size: 1.5rem; font-weight: bold;">Viswam.ai - Indian Cultural Collection</span>
+        </div>
+        <h2 style="color: white; margin: 1rem 0; font-size: 1.2rem; font-weight: normal; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+            Preserving India's festival cultural heritage through community contributions
+        </h2>
+        <p style="color: white; margin: 0.5rem 0 0 0; font-size: 1rem; opacity: 0.9; text-shadow: 0 1px 2px rgba(0,0,0,0.2);">
+            🏛️ Blessed by the divine grace of Lord Venkateswara 🙏
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Login message for non-authenticated users
 if not is_logged_in():
