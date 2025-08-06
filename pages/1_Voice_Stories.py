@@ -31,48 +31,13 @@ translations = get_translations(st.session_state.selected_language)
 
 # Page header
 st.markdown("""
-<div style="
-    background: linear-gradient(135deg, rgba(255, 107, 53, 0.95) 0%, rgba(247, 147, 30, 0.95) 100%);
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(255, 165, 0, 0.08) 0%, transparent 40%);
-    padding: 2rem;
-    border-radius: 15px;
-    text-align: center;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-    position: relative;
-    overflow: hidden;
-">
-    <div style="
-        position: absolute;
-        top: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: rgba(255, 215, 0, 0.2);
-        font-size: 1.5rem;
-    ">🙏</div>
-    
-    <div style="
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 120px;
-        height: 120px;
-        border: 1px solid rgba(255, 215, 0, 0.08);
-        border-radius: 50%;
-        z-index: 1;
-    "></div>
-    
-    <div style="position: relative; z-index: 2;">
-        <h1 style="color: white; margin: 0; text-shadow: 0 2px 6px rgba(0,0,0,0.3);">
-            🎙️ Voice Stories
-        </h1>
-        <p style="color: white; margin: 0.5rem 0 0 0; opacity: 0.95; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
-            Record and share oral traditions, folk tales, and cultural stories blessed by divine grace
-        </p>
-    </div>
+<div style="background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">
+    <h1 style="color: white; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+        🎙️ Voice Stories
+    </h1>
+    <p style="color: white; margin: 0.5rem 0 0 0; opacity: 0.9;">
+        Record and share oral traditions, folk tales, and cultural stories blessed by divine grace
+    </p>
 </div>
 """, unsafe_allow_html=True)
 

@@ -59,96 +59,17 @@ translations = get_translations(st.session_state.selected_language)
 
 # Main content - Orange banner with Viswam.ai branding
 st.markdown("""
-<div style="
-    background: linear-gradient(135deg, rgba(255, 127, 80, 0.95) 0%, rgba(255, 107, 53, 0.95) 100%);
-    background-image: 
-        radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 70% 80%, rgba(255, 165, 0, 0.08) 0%, transparent 50%);
-    padding: 2rem;
-    border-radius: 15px;
-    text-align: center;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-    position: relative;
-    overflow: hidden;
-">
-    <div style="
-        position: absolute;
-        top: 10px;
-        left: 20px;
-        right: 20px;
-        height: 3px;
-        background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
-        border-radius: 2px;
-    "></div>
-    <div style="
-        position: absolute;
-        bottom: 10px;
-        left: 20px;
-        right: 20px;
-        height: 3px;
-        background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
-        border-radius: 2px;
-    "></div>
-    
-    <div style="
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 200px;
-        height: 200px;
-        border: 1px solid rgba(255, 215, 0, 0.1);
-        border-radius: 50%;
-        z-index: 1;
-    "></div>
-    <div style="
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 150px;
-        height: 150px;
-        border: 1px solid rgba(255, 215, 0, 0.08);
-        border-radius: 50%;
-        z-index: 1;
-    "></div>
-    
-    <div style="position: relative; z-index: 2;">
-        <div style="
-            background: rgba(255, 255, 255, 0.15);
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            display: inline-block;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            backdrop-filter: blur(5px);
-        ">
-            <span style="color: white; font-size: 2rem; margin-right: 0.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">🕉️</span>
-            <span style="color: white; font-size: 1.5rem; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
-                Viswam.ai - Indian Cultural Collection
-            </span>
-        </div>
-        <h2 style="
-            color: white;
-            margin: 1rem 0;
-            font-size: 1.2rem;
-            font-weight: normal;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-            letter-spacing: 0.5px;
-        ">
-            Preserving India's Rich Cultural Heritage Through Community Contributions
-        </h2>
-        <p style="
-            color: white;
-            margin: 0.5rem 0 0 0;
-            font-size: 1rem;
-            opacity: 0.95;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-        ">
-            🏛️ Blessed by the divine grace of Lord Venkateswara 🙏
-        </p>
+<div style="background: linear-gradient(135deg, #FF7F50 0%, #FF6B35 100%); padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">
+    <div style="background: rgba(255, 255, 255, 0.2); padding: 0.5rem 1.5rem; border-radius: 25px; display: inline-block; margin-bottom: 1rem;">
+        <span style="color: white; font-size: 2rem; margin-right: 0.5rem;">🕉️</span>
+        <span style="color: white; font-size: 1.5rem; font-weight: bold;">Viswam.ai - Indian Cultural Collection</span>
     </div>
+    <h2 style="color: white; margin: 1rem 0; font-size: 1.2rem; font-weight: normal; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+        Preserving India's festival cultural heritage through community contributions
+    </h2>
+    <p style="color: white; margin: 0.5rem 0 0 0; font-size: 1rem; opacity: 0.9; text-shadow: 0 1px 2px rgba(0,0,0,0.2);">
+        🏛️ Blessed by the divine grace of Lord Venkateswara 🙏
+    </p>
 </div>
 """, unsafe_allow_html=True)
 
