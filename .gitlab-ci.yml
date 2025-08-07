@@ -1,0 +1,52 @@
+# GitLab CI/CD Pipeline for Indian Cultural Heritage Platform
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip/
+    - venv/
+
+stages:
+  - test
+  - deploy
+
+before_script:
+  - python --version
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+  - pip install --upgrade pip
+  - pip install streamlit pandas anthropic openai
+
+# Test stage
+test:
+  stage: test
+  script:
+    - python -m py_compile app.py
+    - python -m py_compile utils/*.py
+    - python -m py_compile pages/*.py
+    - echo "All Python files compiled successfully"
+  only:
+    - branches
+
+# Deploy to staging (optional)
+deploy_staging:
+  stage: deploy
+  script:
+    - echo "Deploy to staging environment"
+    - echo "This would typically deploy to a staging server"
+  only:
+    - develop
+  when: manual
+
+# Deploy to production (optional)
+deploy_production:
+  stage: deploy
+  script:
+    - echo "Deploy to production environment"
+    - echo "This would typically deploy to a production server"
+  only:
+    - main
+  when: manual
