@@ -12,7 +12,7 @@ Preferred communication style: Simple, everyday language.
 - **Framework**: Streamlit for rapid web application development
 - **Multi-page Structure**: Organized into multimedia-focused modules (Voice Stories, Video Traditions, Festivals & Events, Cultural Stories, Community Gallery, My Contributions)
 - **Authentication UI**: Secure login/registration forms with user profile management
-- **Theming System**: Custom ChatGPT-inspired light/dark mode theming with Viswam.ai orange branding
+- **Theming System**: Custom ChatGPT-inspired light/dark mode theming with FestiveVoice orange branding
 - **Internationalization**: Support for multiple Indian languages with translation utilities
 - **Session Management**: Streamlit session state for user authentication, preferences, and contribution tracking
 

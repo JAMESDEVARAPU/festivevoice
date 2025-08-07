@@ -10,7 +10,7 @@ from utils.auth import auth_sidebar, is_logged_in, get_current_user, update_user
 
 # Page config
 st.set_page_config(
-    page_title="Indian Culture Explorer",
+    page_title="FestiveVoice Cultural Collection",
     page_icon="🇮🇳",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -57,12 +57,12 @@ with st.sidebar:
 # Get translations for selected language
 translations = get_translations(st.session_state.selected_language)
 
-# Main content - Orange banner with Viswam.ai branding
+# Main content - Orange banner with FestiveVoice branding
 st.markdown("""
 <div style="background: linear-gradient(135deg, #FF7F50 0%, #FF6B35 100%); padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">
     <div style="background: rgba(255, 255, 255, 0.2); padding: 0.5rem 1.5rem; border-radius: 25px; display: inline-block; margin-bottom: 1rem;">
         <span style="color: white; font-size: 2rem; margin-right: 0.5rem;">🕉️</span>
-        <span style="color: white; font-size: 1.5rem; font-weight: bold;">Viswam.ai - Indian Cultural Collection</span>
+        <span style="color: white; font-size: 1.5rem; font-weight: bold;">FestiveVoice - Indian Cultural Collection</span>
     </div>
     <h2 style="color: white; margin: 1rem 0; font-size: 1.2rem; font-weight: normal; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
         Preserving India's festival cultural heritage through community contributions

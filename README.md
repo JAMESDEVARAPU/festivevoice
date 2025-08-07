@@ -21,7 +21,7 @@ This Streamlit-based web application serves as a comprehensive platform for docu
 
 ### 🎨 Modern Interface
 - ChatGPT-inspired light/dark mode theming
-- Viswam.ai orange branding with professional design
+- FestiveVoice orange branding with professional design
 - Responsive and culturally sensitive user interface
 - Multilingual support for Indian languages
 
@@ -161,7 +161,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **Viswam.ai**: Project sponsorship and cultural guidance
+- **FestiveVoice**: Project sponsorship and cultural guidance
 - **Community Contributors**: Cultural content and validation
 - **OpenAI & Anthropic**: AI-powered content validation services
 - **Streamlit**: Rapid web application development framework
@@ -170,7 +170,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For support and questions:
 - Create an issue in the GitLab repository
-- Contact the development team through Viswam.ai channels
+- Contact the development team through FestiveVoice channels
 
 ---
 
