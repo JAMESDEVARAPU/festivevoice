@@ -1,5 +1,3 @@
-# Indian Cultural Heritage Collection Platform
-
 An AI-powered multimedia platform for preserving and sharing India's rich cultural heritage, focusing on festivals and cultural traditions through community contributions.
 
 ## 🎯 Project Overview
@@ -119,14 +117,10 @@ This Streamlit-based web application serves as a comprehensive platform for docu
 - **Theming**: Custom ChatGPT-inspired design system
 - **Data Processing**: Pandas for analytics and export
 
-## 🎨 Design Philosophy
-
-The platform combines modern web development practices with cultural sensitivity:
-
-- **Sacred Aesthetics**: Orange gradient themes honoring cultural traditions
-- **Accessibility**: Clear typography and intuitive navigation
-- **Responsiveness**: Optimized for various devices and screen sizes
-- **Cultural Respect**: Thoughtful design elements that honor Indian heritage
+| Team Members| Role |
+| James | Designer |
+|  Meghana      |   Data collecter     |
+|     Harshitha   |    Data collecter    |
 
 ## 🔧 Configuration
 
@@ -135,10 +129,6 @@ The application requires API keys for AI validation features:
 - **OpenAI API**: Primary content validation service
 - **Anthropic API**: Secondary validation with fallback support
 
-### Customization
-- Modify `utils/theming.py` for visual customizations
-- Update `utils/translations.py` for additional language support
-- Adjust validation settings in `utils/validation.py`
 
 ## 📊 Data Export
 
@@ -147,31 +137,9 @@ The platform supports data export in multiple formats:
 - **JSON**: Raw data export for advanced processing
 - **Filtered Exports**: Custom data selections based on criteria
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Merge Request
 
-## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- **FestiveVoice**: Project sponsorship and cultural guidance
-- **Community Contributors**: Cultural content and validation
-- **OpenAI & Anthropic**: AI-powered content validation services
-- **Streamlit**: Rapid web application development framework
-
-## 📞 Support
-
-For support and questions:
-- Create an issue in the GitLab repository
-- Contact the development team through FestiveVoice channels
-
----
 
 **Built with ❤️ for preserving India's rich cultural heritage**
