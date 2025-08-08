@@ -117,10 +117,6 @@ This Streamlit-based web application serves as a comprehensive platform for docu
 - **Theming**: Custom ChatGPT-inspired design system
 - **Data Processing**: Pandas for analytics and export
 
-| header | header |
-| James | Designer |
-|        |        |
-|        |        |
 
 ## 🔧 Configuration
 
@@ -138,8 +134,3 @@ The platform supports data export in multiple formats:
 - **Filtered Exports**: Custom data selections based on criteria
 
 
-
-
-
-
-**Built with ❤️ for preserving India's rich cultural heritage**
