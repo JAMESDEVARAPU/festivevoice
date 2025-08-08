@@ -117,10 +117,10 @@ This Streamlit-based web application serves as a comprehensive platform for docu
 - **Theming**: Custom ChatGPT-inspired design system
 - **Data Processing**: Pandas for analytics and export
 
-| Team Members| Role |
+| header | header |
 | James | Designer |
-|  Meghana      |   Data collecter     |
-|     Harshitha   |    Data collecter    |
+|        |        |
+|        |        |
 
 ## 🔧 Configuration
 
