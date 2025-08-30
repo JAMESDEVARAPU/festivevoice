@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 from datetime import datetime
-from utils.data_manager import save_user_data, load_corpus_data
+from utils.data_manager import save_user_data, load_corpus_data, get_festival_list
 from utils.ai_validation import validate_content
 from utils.theming import apply_chatgpt_theme
 from utils.translations import get_translations
@@ -98,6 +98,13 @@ with col1:
             placeholder="e.g., Professional dancer, Community elder, Family member"
         )
         
+        # Festival/Event linking
+        festival_event = st.selectbox(
+            "Related Festival/Event (Optional):",
+            ["Not Related to Any Festival"] + get_festival_list(),
+            help="Link this video to a specific festival or cultural event"
+        )
+        
         st.markdown("#### 📹 Video Upload")
         st.info("Upload your video file (max 100MB). Supported formats: MP4, AVI, MOV, MKV")
         
@@ -157,6 +164,7 @@ with col1:
                         'video_size_mb': round(video_size_mb, 2),
                         'duration': video_duration,
                         'video_language': video_language,
+                        'festival_event': festival_event if festival_event != "Not Related to Any Festival" else None,
                         'privacy_level': privacy_level,
                         'consent_given': consent_given,
                         'language': st.session_state.selected_language,

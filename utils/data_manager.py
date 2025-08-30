@@ -114,6 +114,42 @@ def get_data_by_region(region: str) -> List[Dict[str, Any]]:
     corpus_data = load_corpus_data()
     return [entry for entry in corpus_data if entry.get('region') == region]
 
+def get_data_by_festival(festival: str) -> List[Dict[str, Any]]:
+    """Get all corpus entries linked to a specific festival."""
+    corpus_data = load_corpus_data()
+    return [entry for entry in corpus_data if entry.get('festival_event') == festival]
+
+def get_festival_content_summary() -> Dict[str, Dict[str, int]]:
+    """Get summary of content types for each festival."""
+    corpus_data = load_corpus_data()
+    festival_summary = {}
+    
+    for entry in corpus_data:
+        festival = entry.get('festival_event', 'Not Specified')
+        if festival != 'Not Specified':
+            if festival not in festival_summary:
+                festival_summary[festival] = {
+                    'voice_stories': 0,
+                    'video_traditions': 0,
+                    'cultural_stories': 0,
+                    'festival_events': 0,
+                    'total': 0
+                }
+            
+            entry_type = entry.get('type', '')
+            if entry_type == 'voice_story':
+                festival_summary[festival]['voice_stories'] += 1
+            elif entry_type == 'video_tradition':
+                festival_summary[festival]['video_traditions'] += 1
+            elif entry_type == 'cultural_story':
+                festival_summary[festival]['cultural_stories'] += 1
+            elif entry_type == 'festival_event':
+                festival_summary[festival]['festival_events'] += 1
+            
+            festival_summary[festival]['total'] += 1
+    
+    return festival_summary
+
 def get_recent_data(limit: int = 10) -> List[Dict[str, Any]]:
     """Get the most recent corpus entries."""
     corpus_data = load_corpus_data()
@@ -155,8 +191,21 @@ def search_corpus(query: str) -> List[Dict[str, Any]]:
     
     return matching_entries
 
+def get_festival_list() -> List[str]:
+    """Get list of major Indian festivals for linking content."""
+    return [
+        "Diwali", "Holi", "Dussehra", "Navratri", "Karva Chauth", "Raksha Bandhan",
+        "Krishna Janmashtami", "Ganesh Chaturthi", "Durga Puja", "Kali Puja",
+        "Onam", "Pongal", "Makar Sankranti", "Baisakhi", "Gudi Padwa",
+        "Eid al-Fitr", "Eid al-Adha", "Christmas", "Good Friday", "Easter",
+        "Guru Nanak Jayanti", "Buddha Purnima", "Mahavir Jayanti",
+        "Poila Boishakh", "Bihu", "Vishu", "Ugadi", "Chaitra Navratri",
+        "Ram Navami", "Hanuman Jayanti", "Shivratri", "Teej", "Chhath Puja",
+        "Regional Festival", "Other"
+    ]
+
 def get_corpus_statistics() -> Dict[str, Any]:
-    """Get comprehensive statistics about the corpus."""
+    """Get comprehensive statistics about the corpus including internship progress."""
     corpus_data = load_corpus_data()
     
     if not corpus_data:
@@ -165,8 +214,15 @@ def get_corpus_statistics() -> Dict[str, Any]:
             'data_types': {},
             'languages': {},
             'regions': {},
+            'festivals': {},
             'quality_stats': {},
-            'temporal_stats': {}
+            'temporal_stats': {},
+            'internship_progress': {
+                'audio_video_hours': 0,
+                'image_text_records': 0,
+                'target_audio_video': 80,
+                'target_image_text': 800
+            }
         }
     
     stats = {
@@ -174,12 +230,21 @@ def get_corpus_statistics() -> Dict[str, Any]:
         'data_types': {},
         'languages': {},
         'regions': {},
+        'festivals': {},
         'quality_stats': {},
-        'temporal_stats': {}
+        'temporal_stats': {},
+        'internship_progress': {
+            'audio_video_hours': 0,
+            'image_text_records': 0,
+            'target_audio_video': 80,
+            'target_image_text': 800
+        }
     }
     
     quality_scores = []
     timestamps = []
+    audio_video_hours = 0
+    image_text_records = 0
     
     for entry in corpus_data:
         # Count data types
@@ -194,6 +259,21 @@ def get_corpus_statistics() -> Dict[str, Any]:
         region = entry.get('region', 'Unknown')
         if region != 'Unknown':
             stats['regions'][region] = stats['regions'].get(region, 0) + 1
+        
+        # Count festivals
+        festival = entry.get('festival_event', 'Not Specified')
+        if festival != 'Not Specified':
+            stats['festivals'][festival] = stats['festivals'].get(festival, 0) + 1
+        
+        # Calculate internship progress
+        entry_type = entry.get('type', '')
+        if entry_type in ['voice_story', 'video_tradition']:
+            # Estimate duration based on content length (rough approximation)
+            content_length = len(entry.get('content', ''))
+            estimated_minutes = max(1, content_length // 100)  # ~1 min per 100 chars
+            audio_video_hours += estimated_minutes / 60
+        elif entry_type in ['cultural_story', 'cultural_fact', 'festival_event', 'image_submission']:
+            image_text_records += 1
         
         # Collect quality scores
         if 'quality_score' in entry:
@@ -224,6 +304,16 @@ def get_corpus_statistics() -> Dict[str, Any]:
                 if t.startswith(datetime.now().strftime('%Y-%m-%d'))
             ])
         }
+    
+    # Update internship progress
+    stats['internship_progress'] = {
+        'audio_video_hours': round(audio_video_hours, 2),
+        'image_text_records': image_text_records,
+        'target_audio_video': 80,
+        'target_image_text': 800,
+        'audio_video_progress': min(100, (audio_video_hours / 80) * 100),
+        'image_text_progress': min(100, (image_text_records / 800) * 100)
+    }
     
     return stats
 

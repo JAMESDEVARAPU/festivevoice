@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 from datetime import datetime
-from utils.data_manager import save_user_data, load_corpus_data
+from utils.data_manager import save_user_data, load_corpus_data, get_festival_list
 from utils.ai_validation import validate_content
 from utils.theming import apply_chatgpt_theme
 from utils.translations import get_translations
@@ -79,6 +79,13 @@ with col1:
             ["Hindi", "English", "Bengali", "Telugu", "Marathi", "Tamil", "Gujarati", "Kannada", "Malayalam", "Punjabi", "Odia", "Other"]
         )
         
+        # Festival/Event linking
+        festival_event = st.selectbox(
+            "Related Festival/Event (Optional):",
+            ["Not Related to Any Festival"] + get_festival_list(),
+            help="Link this story to a specific festival or cultural event"
+        )
+        
         story_description = st.text_area(
             "Story Summary / Description:",
             placeholder="Brief description of what the story is about...",
@@ -134,6 +141,7 @@ with col1:
                     'transcription': story_transcription,
                     'has_audio': audio_file is not None,
                     'audio_filename': audio_file.name if audio_file else None,
+                    'festival_event': festival_event if festival_event != "Not Related to Any Festival" else None,
                     'language': st.session_state.selected_language,
                     'timestamp': datetime.now().isoformat(),
                     'contributor': current_user.get('username', 'unknown') if current_user else 'unknown'

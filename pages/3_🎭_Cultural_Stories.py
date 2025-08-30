@@ -2,7 +2,7 @@ import streamlit as st
 import json
 from datetime import datetime
 from utils.theming import apply_chatgpt_theme
-from utils.data_manager import save_user_data, load_corpus_data
+from utils.data_manager import save_user_data, load_corpus_data, get_festival_list
 from utils.ai_validation import validate_content
 from utils.translations import get_translations
 from utils.auth import is_logged_in, get_current_user, update_user_contributions
@@ -131,6 +131,13 @@ with col2:
         "Suitable for:",
         ["All ages", "Children", "Adults", "Elderly", "Religious audiences"]
     )
+    
+    # Festival/Event linking
+    festival_event = st.selectbox(
+        "Related Festival/Event (Optional):",
+        ["Not Related to Any Festival"] + get_festival_list(),
+        help="Link this story to a specific festival or cultural event"
+    )
 
 # Additional story details
 with st.expander("📖 Additional Story Details (Optional)"):
@@ -188,6 +195,7 @@ if st.button("📚 Submit Story") and story_title and story_content:
                 'setting_time': setting_time,
                 'setting_place': setting_place,
                 'variations': variations,
+                'festival_event': festival_event if festival_event != "Not Related to Any Festival" else None,
                 'user_language': selected_language,
                 'timestamp': datetime.now().isoformat(),
                 'quality_score': validation_result['quality_score'],

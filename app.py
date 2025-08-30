@@ -3,7 +3,7 @@ import json
 import os
 from datetime import datetime
 from utils.theming import apply_chatgpt_theme
-from utils.data_manager import save_user_data, load_corpus_data
+from utils.data_manager import save_user_data, load_corpus_data, get_corpus_statistics
 from utils.translations import get_translations, SUPPORTED_LANGUAGES
 from utils.ai_validation import validate_content
 from utils.auth import auth_sidebar, is_logged_in, get_current_user, update_user_contributions
@@ -90,7 +90,58 @@ if not is_logged_in():
     </div>
     """, unsafe_allow_html=True)
 
-# Statistics section (matching screenshot design)
+# Statistics section with internship progress
+stats = get_corpus_statistics()
+internship_progress = stats.get('internship_progress', {})
+
+# Internship Progress Section
+st.markdown("### 🎯 Summer of AI 2025 - Corpus Collection Progress")
+progress_col1, progress_col2 = st.columns(2)
+
+with progress_col1:
+    audio_video_hours = internship_progress.get('audio_video_hours', 0)
+    audio_video_progress = internship_progress.get('audio_video_progress', 0)
+    st.markdown(f"""
+    <div style="
+        background-color: #E8F5E8;
+        padding: 1.5rem;
+        border-radius: 10px;
+        text-align: center;
+        border: 2px solid #4CAF50;
+        margin-bottom: 1rem;
+    ">
+        <h3 style="margin: 0; color: #2E7D32; font-size: 0.9rem; font-weight: normal;">🎙️ Audio & Video Hours</h3>
+        <h1 style="margin: 0.5rem 0 0 0; color: #1B5E20; font-size: 2rem; font-weight: bold;">{audio_video_hours} / 80</h1>
+        <div style="background-color: #C8E6C9; border-radius: 10px; margin-top: 0.5rem;">
+            <div style="background-color: #4CAF50; height: 8px; border-radius: 10px; width: {audio_video_progress}%;"></div>
+        </div>
+        <small style="color: #2E7D32;">{audio_video_progress:.1f}% Complete</small>
+    </div>
+    """, unsafe_allow_html=True)
+
+with progress_col2:
+    image_text_records = internship_progress.get('image_text_records', 0)
+    image_text_progress = internship_progress.get('image_text_progress', 0)
+    st.markdown(f"""
+    <div style="
+        background-color: #E3F2FD;
+        padding: 1.5rem;
+        border-radius: 10px;
+        text-align: center;
+        border: 2px solid #2196F3;
+        margin-bottom: 1rem;
+    ">
+        <h3 style="margin: 0; color: #1976D2; font-size: 0.9rem; font-weight: normal;">📝 Images & Text Records</h3>
+        <h1 style="margin: 0.5rem 0 0 0; color: #0D47A1; font-size: 2rem; font-weight: bold;">{image_text_records} / 800</h1>
+        <div style="background-color: #BBDEFB; border-radius: 10px; margin-top: 0.5rem;">
+            <div style="background-color: #2196F3; height: 8px; border-radius: 10px; width: {image_text_progress}%;"></div>
+        </div>
+        <small style="color: #1976D2;">{image_text_progress:.1f}% Complete</small>
+    </div>
+    """, unsafe_allow_html=True)
+
+# Traditional Statistics section
+st.markdown("### 📊 Content Overview")
 col1, col2, col3 = st.columns(3)
 data = load_corpus_data()
 

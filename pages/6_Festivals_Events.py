@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 from datetime import datetime
-from utils.data_manager import save_user_data, load_corpus_data
+from utils.data_manager import save_user_data, load_corpus_data, get_festival_list
 from utils.ai_validation import validate_content
 from utils.theming import apply_chatgpt_theme
 from utils.translations import get_translations, SUPPORTED_LANGUAGES
@@ -117,6 +117,7 @@ with col1:
                     'traditions': festival_traditions,
                     'foods': festival_foods,
                     'significance': cultural_significance,
+                    'festival_event': festival_name,  # Self-reference for consistency
                     'language': st.session_state.selected_language,
                     'timestamp': datetime.now().isoformat(),
                     'contributor': current_user.get('username', 'unknown') if current_user else 'unknown'
