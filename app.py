@@ -57,7 +57,83 @@ with st.sidebar:
 # Get translations for selected language
 translations = get_translations(st.session_state.selected_language)
 
-# Main content - Orange banner with FestiveVoice branding
+# Check if user is logged in - if not, show login/register page
+if not is_logged_in():
+    # Login/Register Page
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #FF7F50 0%, #FF6B35 100%); padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">
+        <div style="background: rgba(255, 255, 255, 0.2); padding: 0.5rem 1.5rem; border-radius: 25px; display: inline-block; margin-bottom: 1rem;">
+            <span style="color: white; font-size: 2rem; margin-right: 0.5rem;">🕉️</span>
+            <span style="color: white; font-size: 1.5rem; font-weight: bold;">FestiveVoice - Indian Cultural Collection</span>
+        </div>
+        <h2 style="color: white; margin: 1rem 0; font-size: 1.2rem; font-weight: normal; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+            Welcome! Please login or register to access the cultural heritage app
+        </h2>
+        <p style="color: white; margin: 0.5rem 0 0 0; font-size: 1rem; opacity: 0.9; text-shadow: 0 1px 2px rgba(0,0,0,0.2);">
+            🏛️ Blessed by the divine grace of Lord Venkateswara 🙏
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div style="
+        background-color: #FFF3CD;
+        border: 2px solid #FFEAA7;
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        margin: 2rem 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    ">
+        <h2 style="color: #856404; margin-bottom: 1rem;">🚀 Access Required</h2>
+        <p style="color: #856404; font-size: 1.1rem; margin-bottom: 1.5rem;">
+            Please <strong>login or register</strong> using the sidebar to access:
+        </p>
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin: 1rem 0;">
+            <div style="margin: 0.5rem; padding: 1rem; background: white; border-radius: 10px; min-width: 200px;">
+                <span style="font-size: 2rem;">🎙️</span><br>
+                <strong>Voice Stories</strong><br>
+                <small>Telugu & Hindi festival stories</small>
+            </div>
+            <div style="margin: 0.5rem; padding: 1rem; background: white; border-radius: 10px; min-width: 200px;">
+                <span style="font-size: 2rem;">🎬</span><br>
+                <strong>Video Traditions</strong><br>
+                <small>Cultural performances</small>
+            </div>
+            <div style="margin: 0.5rem; padding: 1rem; background: white; border-radius: 10px; min-width: 200px;">
+                <span style="font-size: 2rem;">🖼️</span><br>
+                <strong>Festival Images</strong><br>
+                <small>Visual celebrations</small>
+            </div>
+            <div style="margin: 0.5rem; padding: 1rem; background: white; border-radius: 10px; min-width: 200px;">
+                <span style="font-size: 2rem;">📚</span><br>
+                <strong>Cultural Stories</strong><br>
+                <small>Traditional narratives</small>
+            </div>
+        </div>
+        <p style="color: #856404; margin-top: 1.5rem;">
+            👈 Use the sidebar to login or create a new account
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Show some preview statistics
+    stats = get_corpus_statistics()
+    st.markdown("### 📊 Cultural Collection Stats (Preview)")
+    
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("Voice Stories", stats.get('voice_stories', 0), help="Telugu & Hindi festival stories")
+    with col2:
+        st.metric("Video Traditions", stats.get('video_traditions', 0), help="Cultural performances")
+    with col3:
+        st.metric("Cultural Facts", stats.get('cultural_facts', 0), help="Heritage knowledge")
+    with col4:
+        st.metric("Total Entries", stats.get('total_entries', 0), help="All contributions")
+    
+    st.stop()  # Stop execution here if not logged in
+
+# Main content for logged-in users - Orange banner with FestiveVoice branding
 st.markdown("""
 <div style="background: linear-gradient(135deg, #FF7F50 0%, #FF6B35 100%); padding: 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">
     <div style="background: rgba(255, 255, 255, 0.2); padding: 0.5rem 1.5rem; border-radius: 25px; display: inline-block; margin-bottom: 1rem;">
@@ -73,19 +149,20 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Login message for non-authenticated users
-if not is_logged_in():
-    st.markdown("""
+# Welcome message for logged-in users
+current_user = get_current_user()
+if current_user:
+    st.markdown(f"""
     <div style="
-        background-color: #FFF3CD;
-        border: 1px solid #FFEAA7;
+        background-color: #E8F5E8;
+        border: 1px solid #4CAF50;
         border-radius: 8px;
         padding: 1rem;
         text-align: center;
         margin-bottom: 1.5rem;
     ">
-        <span style="color: #856404;">
-            Please login from the sidebar to start contributing!
+        <span style="color: #2E7D32;">
+            🙏 Welcome back, <strong>{current_user.get('username', 'User')}</strong>! Ready to contribute to India's cultural heritage?
         </span>
     </div>
     """, unsafe_allow_html=True)
