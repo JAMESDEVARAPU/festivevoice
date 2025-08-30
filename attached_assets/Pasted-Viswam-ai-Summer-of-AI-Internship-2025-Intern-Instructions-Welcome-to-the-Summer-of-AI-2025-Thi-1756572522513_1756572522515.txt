@@ -1,0 +1,131 @@
+Viswam.ai - Summer of AI Internship 2025: Intern Instructions
+
+Welcome to the Summer of AI 2025! This document outlines the core tasks, learning path, and goals for your internship. Our mission is to build Indic datasets to fine-tune AI models, and your contribution is crucial. Let's get started.
+
+Primary Goals:
+
+
+Corpus Collection: With the Minimum target of 80 hours of Audio & Video and 800 records of Images & Text per Intern, directlty sourced from the human. This is the major step in building your AI project, from model finetuning to scaling to multi-usecase applications.
+
+Build Colloborative Corpus Collection AI Engine Projects
+Build the fine-tuned LLMs
+
+More is always good; more quality data => better fine-tuned models.
+Recommended: 20 hours of Audio & Video and 200 records of Images & Text per Intern per week.
+Your most important ongoing task is the daily collection of high-quality corpus data. This data is the foundation for the AI models we will build and refine. Consistency is key to achieving our collective goal.
+
+Corpus Collection Guidelines
+
+This is the application used to build Indic datasets for fine-tuning AI models. You can contribute using the following platforms:
+
+
+Web App: Access the corpus collection tool at corpus.swecha.org. It is designed to work on all devices, including desktops and mobiles.
+
+For more detailed information, check Corpus handbook
+
+1. Onboarding and Setup
+
+Complete these initial steps to get fully integrated into our ecosystem.
+
+1.1 Account Creation & Platform Onboarding
+
+You will use a single sign-on (SSO) approach. Your account on code.swecha.org will be your primary identity.
+
+
+Create Your Primary Account:
+
+Go to code.swecha.org (our GitLab instance) and register for an account. This will be your main login for other services.
+For all the project activities, including from ideation, planning and code docntributions goes here.
+
+
+
+Log in to Essential Platforms (using your code.swecha.org account):
+
+
+chat.swecha.org: Our Mattermost instance for all team communication.
+
+courses.viswam.ai: Our learning portal.
+
+Course 1 : Python Simple
+
+Course 2 : Python Advanced
+
+Course 3 : Learn AI
+
+Dive-deep into Python:  Check Interactive Notebooks Repository
+
+
+
+
+
+
+
+1.2 Create Your Profile README
+
+Your code.swecha.org profile README will serve as your professional portfolio and a new-age resume. It's a public showcase of your skills, projects, and contributions.
+
+
+Action: Create a file named README.md in a new public repository under your username.
+
+Content: Introduce yourself, list your skills, link to your projects, and detail your contributions.
+
+Maintenance: Update it regularly throughout the internship as you acquire new skills and complete project milestones. This will be a valuable asset for your future opportunities.
+
+
+1.3 Complete your Development Environment Setup
+
+Check Initial Development Environment Setup for detailes instructions.
+
+2. Learning Path & Project Development
+
+This section details the skills you will learn and the projects you will build.
+
+2.1 Prompt Engineering, AI Fundamentals, Python & Building an Open Source AI Assistant
+
+
+
+Learn Prompt Engineering: Understand the art and science of crafting effective prompts.
+
+Learn how to engineer prompts with classifying tasks, context, format, examples and others.
+Master concepts like System Prompts and creating distinct AI Personas.
+
+
+Know about Tokens and context window, RAG, In-context learning, LLM Benchmarks, open weights, Inferencing, Fine-tuning, Model Training
+
+Learn App Development: Use Python and the Streamlit library to build interactive web applications for data science and AI.
+
+Build an AI Assistant: Apply your prompt engineering skills to create a useful, open-source AI assistant. Follow detailed submission guidelines
+
+
+
+2.2 Collaborative AI App Development with Python
+
+
+
+Build a Team Project: Collaborate with fellow interns to develop a fully functional, AI-powered application. Follow detailed Submission Guidelines
+
+
+
+2.3 Advanced AI: Inferencing and Fine-Tuning
+
+
+
+Learn Model Inferencing: Get hands-on experience running AI models locally.
+
+
+On PCs: Use Ollama to run and interact with various large language models.
+
+On Mobile: Explore Pocketpal for on-device AI model inferencing.
+
+
+
+Fine-tune AI Models: Fine-tune an AI model on the data you've created. A team of 5 can prepare unique Indic datasets to train AI models in Indic languages.
+
+Attain Compute Power: Fine-tuning requires significant computational resources. You will learn about and participate in building distributed compute grids by signing up fellow interns for volunteer computing initiatives.
+
+
+2.4 Evaluation and Benchmarking of AI models
+
+
+
+Model Assessment: Perform a thorough evaluation and benchmarking of your fine-tuned model to measure its performance and accuracy. Once complete, submit your model and results for evaluation.
