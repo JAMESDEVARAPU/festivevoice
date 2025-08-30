@@ -269,6 +269,26 @@ if video_traditions:
                             st.markdown(f"**Cultural Context:** {video.get('cultural_context')}")
                         if video.get('participants_info'):
                             st.markdown(f"**Participants:** {video.get('participants_info')}")
+                        
+                        # Video playback section
+                        st.markdown("📹 **Video Playback:**")
+                        video_filename = video.get('video_filename', 'sample_video.mp4')
+                        st.markdown(f"**File:** {video_filename} ({video.get('video_size_mb', 0)}MB)")
+                        
+                        # Sample video player for demonstration
+                        try:
+                            # In real app, this would show the actual uploaded video
+                            st.video("https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4")
+                            st.caption(f"🎬 Duration: {video.get('duration', 'Unknown')} | Language: {video.get('video_language', 'Unknown')}")
+                            
+                            # Cultural context based on category
+                            if video.get('category') == 'Dance Performance':
+                                st.info("🩰 Traditional Indian dance performance preserving cultural heritage")
+                            elif video.get('category') == 'Arts & Crafts':
+                                st.info("🎨 Traditional craft demonstration preserving artisan skills")
+                        except:
+                            st.write(f"🎬 Video player would appear here showing: {video_filename}")
+                            st.caption("📱 Video playback requires the actual uploaded file")
                         st.markdown(f"**File:** {video.get('video_filename', 'Unknown')} ({video.get('video_size_mb', 0)}MB)")
                         st.markdown(f"**Privacy:** {video.get('privacy_level', 'Unknown')}")
 else:

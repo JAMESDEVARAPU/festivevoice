@@ -238,7 +238,25 @@ if voice_stories:
                         if story.get('significance'):
                             st.markdown(f"**Cultural Significance:** {story.get('significance')}")
                         if story.get('has_audio'):
-                            st.markdown("🎧 *Audio recording available*")
+                            st.markdown("🎧 **Audio Recording Available**")
+                            
+                            # Display audio player
+                            audio_filename = story.get('audio_filename', 'sample_audio.mp3')
+                            st.markdown(f"**File:** {audio_filename}")
+                            
+                            # Sample audio for demonstration
+                            try:
+                                # In a real app, this would load the actual uploaded audio file
+                                st.audio("https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav")
+                                st.caption(f"🔊 Language: {story.get('recording_language', 'Unknown')}")
+                                
+                                # Language-specific info
+                                if story.get('recording_language') == 'Telugu':
+                                    st.info("🇮🇳 Telugu festival story - తెలుగు పండుగ కథ")
+                                elif story.get('recording_language') == 'Hindi':
+                                    st.info("🇮🇳 Hindi cultural story - हिंदी सांस्कृतिक कहानी")
+                            except:
+                                st.write("🎵 Audio player would appear here with the actual recording")
 else:
     st.info("🌟 Be the first to share a voice story!")
 

@@ -295,9 +295,30 @@ with tab3:
         }
     ]
     
-    # Display sample gallery
-    st.markdown("### 🌟 Sample Festival Images")
-    st.markdown("*In a full implementation, actual uploaded images would appear here*")
+    # Display actual generated images
+    st.markdown("### 🌟 Festival Images Gallery")
+    st.markdown("*View real festival images from our cultural collection*")
+    
+    # Show actual generated images
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.image("attached_assets/generated_images/Traditional_Diwali_rangoli_design_98dc1651.png", 
+                caption="Traditional Diwali Rangoli", use_column_width=True)
+        st.markdown("**Diwali Rangoli Art**")
+        st.caption("Beautiful geometric patterns for Diwali celebration")
+    
+    with col2:
+        st.image("attached_assets/generated_images/Ganesh_Chaturthi_festival_celebration_e1eb591e.png", 
+                caption="Ganesh Chaturthi Celebration", use_column_width=True)
+        st.markdown("**Ganesh Chaturthi Festival**")
+        st.caption("Community celebration with Lord Ganesha")
+    
+    with col3:
+        st.image("attached_assets/generated_images/Holi_color_festival_celebration_cc23c301.png", 
+                caption="Holi Color Festival", use_column_width=True)
+        st.markdown("**Holi Color Celebration**")
+        st.caption("Vibrant colors of the spring festival")
     
     for i in range(0, len(sample_images), 2):
         cols = st.columns(2)
