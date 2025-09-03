@@ -1,11 +1,56 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
-name = "repl-nix-workspace"
+name = "festivevoice-cultural-collection"
 version = "0.1.0"
-description = "Add your description here"
+description = "A comprehensive Streamlit-based web application designed to preserve, share, and explore India's rich cultural heritage through multimedia content"
+readme = "README.md"
+license = {file = "LICENSE"}
 requires-python = ">=3.11"
+authors = [
+    {name = "FestiveVoice Team"}
+]
+keywords = ["cultural-heritage", "india", "streamlit", "multimedia", "festivals"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Education",
+    "Intended Audience :: Cultural Heritage",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Multimedia",
+    "Topic :: Education",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
 dependencies = [
     "anthropic>=0.61.0",
     "openai>=1.99.1",
     "pandas>=2.3.1",
     "streamlit>=1.48.0",
 ]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.1.0",
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/festivevoice/cultural-collection"
+Repository = "https://github.com/festivevoice/cultural-collection"
+Documentation = "https://github.com/festivevoice/cultural-collection/blob/main/README.md"
+Issues = "https://github.com/festivevoice/cultural-collection/issues"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "C", "I"]
+ignore = ["E501"]  # Line too long
+
+[tool.ruff.lint.isort]
+known-first-party = ["utils"]
